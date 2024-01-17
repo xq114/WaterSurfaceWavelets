@@ -7,6 +7,7 @@
 #include <iostream>
 
 using namespace Magnum;
+using namespace Magnum::GL;
 using namespace WaterWavelets;
 
 // Simulation Settings

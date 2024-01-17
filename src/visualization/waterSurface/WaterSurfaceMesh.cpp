@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace Magnum {
+namespace Magnum::GL {
 
 using namespace Magnum::Math::Literals;
 
@@ -27,7 +27,7 @@ WaterSurfaceMesh::WaterSurfaceMesh(SceneBase3D::Object3D *                   par
 
   _mesh.setPrimitive(MeshPrimitive::Triangles)
       .setCount(_indices.size())
-      .setIndexBuffer(_indexBuffer, 0, Mesh::IndexType::UnsignedInt);
+      .setIndexBuffer(_indexBuffer, 0, MeshIndexType::UnsignedInt);
 
   addVertexBuffer(_mesh, _vertexBuffer,
                   std::make_index_sequence<DIR_NUM / 4>{});
@@ -79,9 +79,9 @@ void WaterSurfaceMesh::loadProfile(
   ImageView1D image(GL::PixelFormat::RGBA, PixelType::Float, profileBuffer.m_data.size(),
                     data);
 
-  _profileTexture.setWrapping(Sampler::Wrapping::Repeat)
-      .setMagnificationFilter(Sampler::Filter::Linear)
-      .setMinificationFilter(Sampler::Filter::Linear)
+  _profileTexture.setWrapping(SamplerWrapping::Repeat)
+      .setMagnificationFilter(SamplerFilter::Linear)
+      .setMinificationFilter(SamplerFilter::Linear)
       .setStorage(1, TextureFormat::RGBA32F, profileBuffer.m_data.size())
       .setSubImage(0, {}, image);
 

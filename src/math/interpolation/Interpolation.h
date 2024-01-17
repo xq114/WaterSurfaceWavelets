@@ -7,7 +7,7 @@
 #include "meta_utils.h"
 
 template <int I>
-auto InterpolateNthArgument = [](auto fun, auto interpolation) {
+constexpr auto InterpolateNthArgument = [](auto fun, auto interpolation) {
   return [=](auto... x) mutable {
 	   // static_assert(std::is_invocable<decltype(fun), decltype(x)...>::value,
            //        "Invalid aguments");
@@ -65,7 +65,7 @@ auto InterpolationDimWise2(Interpolation... interpolation) {
   };
 }
 
-auto ConstantInterpolation = [](auto fun) {
+constexpr auto ConstantInterpolation = [](auto fun) {
   using ValueType = std::remove_reference_t<decltype(fun(0))>;
   return [=](auto x) mutable -> ValueType {
     int ix = (int)round(x);
@@ -73,7 +73,7 @@ auto ConstantInterpolation = [](auto fun) {
   };
 };
 
-auto LinearInterpolation = [](auto fun) {
+constexpr auto LinearInterpolation = [](auto fun) {
   // The first two lines are here because Eigen types do
   using ValueType = std::remove_reference_t<decltype(fun(0))>;
   ValueType zero = ValueTraits<ValueType>::zero();
@@ -87,7 +87,7 @@ auto LinearInterpolation = [](auto fun) {
   };
 };
 
-auto CubicInterpolation = [](auto fun) {
+constexpr auto CubicInterpolation = [](auto fun) {
   using ReturnType = std::remove_reference_t<decltype(fun(0))>;
   return [=](auto x) mutable -> ReturnType {
     // for explanation see https://en.wikipedia.org/wiki/Cubic_Hermite_spline

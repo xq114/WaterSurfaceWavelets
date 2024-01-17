@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace Magnum {
+namespace Magnum::GL {
 namespace Drawables {
 
 using namespace Magnum::Math::Literals;
@@ -22,7 +22,7 @@ DrawableMesh::DrawableMesh(SceneBase3D::Object3D *parent, SceneGraph::DrawableGr
       .setCount(_indices.size())
       .addVertexBuffer(_vertexBuffer, 0, GShader::Position{}, GShader::Normal{},
                        GShader::Color4{})
-      .setIndexBuffer(_indexBuffer, 0, Mesh::IndexType::UnsignedInt);
+      .setIndexBuffer(_indexBuffer, 0, MeshIndexType::UnsignedInt);
 }
 
 void DrawableMesh::bindBuffers(std::vector<VertexData> const &data) {
@@ -143,18 +143,21 @@ Sphere::Sphere(SceneBase3D::Object3D *parent, SceneGraph::DrawableGroup3D *group
                int segments)
     : DrawableMesh(parent, group) {
 
-  auto meshData = Primitives::UVSphere::solid(rings, segments);
+  auto meshData = Primitives::uvSphereSolid(rings, segments);
 
-#warning "Normals are incorrect!"
+// #warning "Normals are incorrect!"
 
-  _data.resize(meshData.positions(0).size());
-  for (size_t i = 0; i < meshData.positions(0).size(); i++) {
+  _data.resize(meshData.positions3DAsArray(0).size());
+  for (size_t i = 0; i < meshData.positions3DAsArray(0).size(); i++) {
     _data[i].position = Matrix4::rotationX(Rad{M_PI / 2})
-                            .transformPoint(meshData.positions(0)[i]);
-    _data[i].normal = meshData.normals(0)[i];
+                            .transformPoint(meshData.positions3DAsArray(0)[i]);
+    _data[i].normal = meshData.normalsAsArray(0)[i];
   }
 
-  _indices = meshData.indices();
+  _indices.resize(meshData.indicesAsArray().size());
+  for (size_t i = 0; i < meshData.indicesAsArray().size(); i++) {
+    _indices[i] = meshData.indicesAsArray()[i];
+  }
 
   bindBuffers(_data);
 }

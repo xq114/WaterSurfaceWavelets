@@ -3,11 +3,11 @@
 #include <Corrade/Containers/Reference.h>
 #include <Corrade/Utility/Resource.h>
 
-#include <Magnum/Extensions.h>
-#include <Magnum/Shader.h>
-#include <Magnum/Texture.h>
+#include <Magnum/GL/Extensions.h>
+#include <Magnum/GL/Shader.h>
+#include <Magnum/GL/Texture.h>
 
-namespace Magnum {
+namespace Magnum::GL {
 namespace Shaders {
 
 WaterSurfaceShader::WaterSurfaceShader() {

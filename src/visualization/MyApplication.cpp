@@ -18,7 +18,7 @@
 #include <Magnum/Shader.h>
 #include <Magnum/Shaders/Phong.h>
 #include <Magnum/Shaders/VertexColor.h>
-#include <Magnum/Trade/MeshData3D.h>
+#include <Magnum/Trade/MeshData.h>
 
 #include <MagnumImGui.h>
 #include <imgui.h>

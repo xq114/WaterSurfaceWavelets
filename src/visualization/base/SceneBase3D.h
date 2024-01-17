@@ -2,7 +2,7 @@
 
 
 #include <Magnum/GL/Buffer.h>
-#include <Magnum/DefaultFramebuffer.h>
+#include <Magnum/GL/DefaultFramebuffer.h>
 #include <Magnum/Math/Color.h>
 #include <Magnum/Mesh.h>
 #include <Magnum/MeshTools/Compile.h>
@@ -21,7 +21,7 @@
 #include <Magnum/GL/Shader.h>
 #include <Magnum/Shaders/Phong.h>
 #include <Magnum/Shaders/VertexColor.h>
-#include <Magnum/Trade/MeshData3D.h>
+#include <Magnum/Trade/MeshData.h>
 
 // #include <MagnumImGui.h>
 #include <Magnum/ImGuiIntegration/Context.hpp>
@@ -31,7 +31,7 @@
 
 #include <iostream>
 
-namespace Magnum {
+namespace Magnum::GL {
 
 class SceneBase3D : public Platform::Application {
 public:

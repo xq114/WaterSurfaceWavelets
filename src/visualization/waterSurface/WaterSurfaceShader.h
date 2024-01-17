@@ -5,11 +5,11 @@
 #include "Magnum/Math/Matrix4.h"
 #include "Magnum/Shaders/Generic.h"
 #include "Magnum/Shaders/visibility.h"
-#include "Magnum/Texture.h"
+#include "Magnum/GL/Texture.h"
 
 #include "DirectionNumber.h"
 
-namespace Magnum {
+namespace Magnum::GL {
 namespace Shaders {
 
 class WaterSurfaceShader : public AbstractShaderProgram {

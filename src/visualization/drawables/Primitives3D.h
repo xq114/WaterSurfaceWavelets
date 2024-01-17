@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Magnum/GL/Buffer.h>
-#include <Magnum/DefaultFramebuffer.h>
+#include <Magnum/GL/DefaultFramebuffer.h>
 #include <Magnum/Math/Color.h>
 #include <Magnum/Mesh.h>
 #include <Magnum/MeshTools/Compile.h>
@@ -22,13 +22,13 @@
 #include <Magnum/Shaders/MeshVisualizer.h>
 #include <Magnum/Shaders/Phong.h>
 #include <Magnum/Shaders/VertexColor.h>
-#include <Magnum/Trade/MeshData3D.h>
+#include <Magnum/Trade/MeshData.h>
 
 #include <variant>
 
 #include "../base/SceneBase3D.h"
 
-namespace Magnum {
+namespace Magnum::GL {
 namespace Drawables {
 
 class DrawableMesh : public SceneBase3D::Object3D, public SceneGraph::Drawable3D {

@@ -1,7 +1,7 @@
 
 #include "SceneBase3D.h"
 
-namespace Magnum {
+namespace Magnum::GL {
 
 SceneBase3D::SceneBase3D(const Arguments &arguments)
     : Platform::Application{arguments,

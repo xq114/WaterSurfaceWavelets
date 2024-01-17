@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Magnum/GL/Buffer.h>
-#include <Magnum/DefaultFramebuffer.h>
+#include <Magnum/GL/DefaultFramebuffer.h>
 #include <Magnum/Image.h>
 #include <Magnum/ImageView.h>
 #include <Magnum/Math/Color.h>
@@ -9,7 +9,7 @@
 #include <Magnum/MeshTools/Compile.h>
 #include <Magnum/MeshTools/CompressIndices.h>
 #include <Magnum/MeshTools/Interleave.h>
-#include <Magnum/PixelFormat.h>
+#include <Magnum/GL/PixelFormat.h>
 #include <Magnum/Primitives/Cube.h>
 #include <Magnum/Primitives/Icosphere.h>
 #include <Magnum/Primitives/Plane.h>
@@ -27,7 +27,7 @@
 #include <Magnum/Shaders/VertexColor.h>
 #include <Magnum/GL/Texture.h>
 #include <Magnum/GL/TextureFormat.h>
-#include <Magnum/Trade/MeshData3D.h>
+#include <Magnum/Trade/MeshData.h>
 
 #include <iostream>
 
@@ -35,7 +35,7 @@
 #include "WaterSurfaceShader.h"
 #include "../../ProfileBuffer.h"
 
-namespace Magnum {
+namespace Magnum::GL {
 
 class WaterSurfaceMesh : public SceneBase3D::Object3D, public SceneGraph::Drawable3D {
 public:
@@ -53,7 +53,7 @@ public:
   // std::vector<VertexData> newData = _data;
 
 #pragma omp parallel for
-    for (size_t i = 0; i < _data.size(); i++) {
+    for (int i = 0; i < _data.size(); i++) {
       fun(i, _data[i]);
     }
     bindBuffers(_data);
